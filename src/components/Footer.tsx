@@ -56,9 +56,8 @@ export default function Footer() {
             <div className="flex items-start gap-2">
               <span className="text-fanaar-orange font-bold shrink-0">M</span>
               <span className="text-fanaar-cream/90 flex flex-col">
-                <a href="tel:+923210888647" className="hover:text-fanaar-orange transition-colors">+92 321 0888647</a>
+                <a href="tel:+923354210202" className="hover:text-fanaar-orange transition-colors">+92 335 4210202</a>
                 <a href="tel:+923001419541" className="hover:text-fanaar-orange transition-colors">+92 300 1419541</a>
-                <a href="tel:+923067323075" className="hover:text-fanaar-orange transition-colors">+92 306 7323075</a>
               </span>
             </div>
             <div className="flex items-center gap-2">
