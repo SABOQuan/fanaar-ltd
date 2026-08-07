@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/logo2.png" alt="Fanaar Ltd logo" width="120" />
+  <img src="public/logo2.png" alt="Fanaar Ltd logo" width="560" />
 </p>
 
 <h1 align="center">Fanaar Ltd</h1>
