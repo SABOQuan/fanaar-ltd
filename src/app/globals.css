@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f0e7;
+  --foreground: #6e3414;
+}
+
+@theme {
+  --color-fanaar-cream: #f7f0e7;
+  --color-fanaar-brown: #6e3414;
+  --color-fanaar-orange: #d9662b;
+  --color-fanaar-orange-light: #f2a868;
+  --color-fanaar-magenta: #b45b86;
+  --color-fanaar-teal: #2F7C7A;
+  --color-fanaar-navy: #4A4A4A;
+
+  --animate-cascade-glow: cascade-glow 0.6s ease-in-out;
+  --animate-wave: wave 0.6s ease-in-out;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-slow: marquee 60s linear infinite;
+
+  @keyframes cascade-glow {
+    0% { box-shadow: 0 0 0px rgba(234, 123, 60, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(234, 123, 60, 0.8); }
+    100% { box-shadow: 0 0 0px rgba(234, 123, 60, 0.5); }
+  }
+  @keyframes wave {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-avant-garde), system-ui, sans-serif;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+/* ScrollSmoother pins #smooth-wrapper to the viewport and drives scroll via a
+   transform on #smooth-content, so it needs to own the full viewport height. */
+#smooth-wrapper {
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#smooth-content {
+  overflow: visible;
+  width: 100%;
+}
+
+/* Browser autofill (Chrome/Safari) paints its own background + text color
+   over our transparent "blank" inputs. Override it so autofilled fields on
+   the orange contact form still blend in instead of showing a light-blue box. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-fanaar-cream);
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-fanaar-orange) inset;
+  box-shadow: 0 0 0px 1000px var(--color-fanaar-orange) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Hides the scrollbar on horizontally-scrollable card rows (e.g. WhatWeDo)
+   while keeping the element scrollable via touch/drag/buttons. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Grain/noise texture over the whole site, generated with an SVG feTurbulence filter
+   instead of a texture asset. "fixed" pins it to the viewport (unaffected by the transform
+   ScrollSmoother applies to #smooth-content, since this sits on <body> itself, an ancestor
+   of that transform), and stitchTiles="stitch" avoids a seam where the tile repeats. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}

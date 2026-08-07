@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -I{} sh -c 'echo \"{} $\\(date -r \"{}\" 2>/dev/null || stat -c %y \"{}\"\\)\"')",
+      "Bash(npx wrangler *)",
+      "Bash(npm run *)",
+      "Bash(gh --version)",
+      "Bash(git --version)",
+      "Bash(gh auth *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(gh *)",
+      "PowerShell($p = \\(Get-Command gh -ErrorAction SilentlyContinue\\).Source; if \\(-not $p\\) { $p = Get-ChildItem \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName }; $p)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe auth *)"
+    ]
+  }
+}
